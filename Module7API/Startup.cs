@@ -56,9 +56,8 @@ namespace Module7API
             services.AddScoped<ILoginService, LoginService>();
             services.AddScoped<INoteService, NoteService>();
             services.AddSingleton<INoteRepository, MongoNoteRepository>();
-            services.AddScoped<IResponseBuilderFactory, ResponseBuilderFactory>();
-            services.AddSingleton<IRepository<Module7API.Dal.Model.User>, MongoRepository<Module7API.Dal.Model.User>>();
-            services.AddSingleton<IRepository<Module7API.Dal.Model.Note>, MongoRepository<Module7API.Dal.Model.Note>>();
+            services.AddScoped<IResponseBuilderFactory, ResponseBuilderFactory>();           
+            services.AddSingleton(typeof(IRepository<>), typeof(MongoRepository<>));
             services.AddScoped<IDateTimeWrapper, UtcDateTimeWrapper>();
             AutoMapper.Mapper.Initialize(cfg =>
             {
